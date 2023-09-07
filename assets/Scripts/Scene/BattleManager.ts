@@ -23,8 +23,11 @@ window?.vConsole && (window.vConsole.$dom.style.display = 'none')
 
 @ccclass('BattleManager')
 export class BattleManager extends Component {
-  @property(Label)
-  levelComp:Label = null
+
+  @property(Node) gmNode:Node = null;
+
+  @property(Label) levelComp:Label = null;
+
   private level: ILevel
   private stage: Node = null
   private smokeLayer: Node = null
@@ -36,6 +39,7 @@ export class BattleManager extends Component {
 
     EventManager.Instance.on(EVENT_ENUM.RESTART_LEVEL, this.initLevel, this)
     EventManager.Instance.on(EVENT_ENUM.NEXT_LEVEL, this.nextLevel, this)
+    EventManager.Instance.on(EVENT_ENUM.PRE_LEVEL, this.preLevel, this)
     EventManager.Instance.on(EVENT_ENUM.PLAYER_MOVE_END, this.checkArrived, this)
     EventManager.Instance.on(EVENT_ENUM.SHOW_SMOKE, this.generateSmoke, this)
     EventManager.Instance.on(EVENT_ENUM.RECORD_STEP, this.record, this)
@@ -46,6 +50,7 @@ export class BattleManager extends Component {
   onDestroy() {
     EventManager.Instance.off(EVENT_ENUM.RESTART_LEVEL, this.initLevel)
     EventManager.Instance.off(EVENT_ENUM.NEXT_LEVEL, this.nextLevel)
+    EventManager.Instance.off(EVENT_ENUM.PRE_LEVEL, this.preLevel)
     EventManager.Instance.off(EVENT_ENUM.PLAYER_MOVE_END, this.checkArrived)
     EventManager.Instance.off(EVENT_ENUM.SHOW_SMOKE, this.generateSmoke)
     EventManager.Instance.off(EVENT_ENUM.RECORD_STEP, this.record)
@@ -56,6 +61,7 @@ export class BattleManager extends Component {
   }
 
   start() {
+    // this.gmNode && (this.gmNode.active = true)
     this.generateStage()
     this.initLevel()
   }
@@ -72,7 +78,7 @@ export class BattleManager extends Component {
       this.clearLevel()
       //生成新关卡数据
       this.level = level
-      this.levelComp.string = "level:" + DataManager.Instance.levelIndex
+      this.levelComp.string = "level:" + (DataManager.Instance.levelIndex || "1")
       // //地图信息
       DataManager.Instance.mapInfo = this.level.mapInfo
       DataManager.Instance.mapRowCount = this.level.mapInfo.length || 0
@@ -216,6 +222,11 @@ export class BattleManager extends Component {
 
   nextLevel() {
     DataManager.Instance.levelIndex++
+    this.initLevel()
+  }
+
+  preLevel() {
+    DataManager.Instance.levelIndex--
     this.initLevel()
   }
 
