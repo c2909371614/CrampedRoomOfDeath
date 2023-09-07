@@ -1,0 +1,22 @@
+{
+  "name": "CrampedRoomOfDeath",
+  "uuid": "cc8e3713-e0c0-4ea8-8f81-4b9146021337",
+  "version": "3.4.2",
+  "creator": {
+    "version": "3.4.2"
+  },
+  "scripts": {
+    "lint": "eslint --fix & prettier --write src/**"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.5",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.2.2",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^2.2.1"
+  },
+  "_sourceId": "22f2bc02-2d37-4974-8737-adc77bb1b348",
+  "_storeId": "bae17241026be32df01e4436669ccb59"
+}
