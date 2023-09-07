@@ -16,7 +16,7 @@ export const randomByRange = (start: number, end: number) => Math.floor(Math.ran
 
 const getUIMaskNumber = () => 1 << Layers.nameToLayer('UI_2D')
 
-export const createUINode = (name: string = '') => {
+export const createUINode = (name: string = 'new Node') => {
   const node = new Node(name)
   node.layer = getUIMaskNumber()
   const transform = node.addComponent(UITransform)

@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, director } from 'cc'
+import { _decorator, Component, Node, director, Label } from 'cc'
 import DataManager, { IRecord } from '../../Runtime/DataManager'
 import Levels, { ILevel } from '../../Levels'
 import { DIRECTION_ENUM, ENTITY_STATE_ENUM, ENTITY_TYPE_ENUM, EVENT_ENUM, SCENE_ENUM } from '../../Enum'
@@ -16,13 +16,15 @@ import FaderManager from '../../Runtime/FaderManager'
 import { SmokeManager } from '../Smoke/SmokeManager'
 import { ShakeManager } from '../Shake/ShakeManager'
 
-const { ccclass } = _decorator
+const { ccclass, property } = _decorator
 
 // @ts-ignore
 window?.vConsole && (window.vConsole.$dom.style.display = 'none')
 
 @ccclass('BattleManager')
 export class BattleManager extends Component {
+  @property(Label)
+  levelComp:Label = null
   private level: ILevel
   private stage: Node = null
   private smokeLayer: Node = null
@@ -70,6 +72,7 @@ export class BattleManager extends Component {
       this.clearLevel()
       //生成新关卡数据
       this.level = level
+      this.levelComp.string = "level:" + DataManager.Instance.levelIndex
       // //地图信息
       DataManager.Instance.mapInfo = this.level.mapInfo
       DataManager.Instance.mapRowCount = this.level.mapInfo.length || 0
