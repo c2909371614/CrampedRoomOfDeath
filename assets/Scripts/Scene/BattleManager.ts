@@ -15,6 +15,7 @@ import { IronSkeletonManager } from '../IronSkeleton/IronSkeletonManager'
 import FaderManager from '../../Runtime/FaderManager'
 import { SmokeManager } from '../Smoke/SmokeManager'
 import { ShakeManager } from '../Shake/ShakeManager'
+import Utils from '../../Utils/Utils'
 
 const { ccclass, property } = _decorator
 
@@ -35,7 +36,8 @@ export class BattleManager extends Component {
 
   onLoad() {
     director.preloadScene(SCENE_ENUM.Start)
-    DataManager.Instance.levelIndex = 1
+    // DataManager.Instance.levelIndex = 1
+    DataManager.Instance.levelIndex = Utils.Instance.getLevelLocalData()
 
     EventManager.Instance.on(EVENT_ENUM.RESTART_LEVEL, this.initLevel, this)
     EventManager.Instance.on(EVENT_ENUM.NEXT_LEVEL, this.nextLevel, this)

@@ -1,7 +1,7 @@
-import { BlockInputEvents, Color, Component, game, Graphics, UITransform, view, _decorator } from 'cc'
+import { BlockInputEvents, Color, Component, game, Graphics, UITransform, view, _decorator, director, Scene, Node } from 'cc'
 const { ccclass } = _decorator
-const SCREEN_WIDTH = view.getVisibleSize().width
-const SCREEN_HEIGHT = view.getVisibleSize().height
+let SCREEN_WIDTH = view.getVisibleSize().width
+let SCREEN_HEIGHT = view.getVisibleSize().height
 
 export const DEFAULT_FADE_DURATION = 200
 
@@ -20,19 +20,31 @@ export class DrawManager extends Component {
   faderNode: Node
   ctx: Graphics
   block: BlockInputEvents
+  canvas: Node
+  x:number = 0
+  y:number = 0
 
   init() {
     this.block = this.addComponent(BlockInputEvents)
     this.ctx = this.addComponent(Graphics)
     const transform = this.getComponent(UITransform)
     transform.setAnchorPoint(0.5, 0.5)
-    transform.setContentSize(SCREEN_WIDTH, SCREEN_HEIGHT)
+    // transform.setContentSize(SCREEN_WIDTH, SCREEN_HEIGHT)
+    this.canvas = (director.getScene() as Scene).getChildByName("Canvas") as any as Node;
+    let canvasTran = this.canvas.getComponent(UITransform)
+    SCREEN_HEIGHT = canvasTran.height;
+    SCREEN_WIDTH = canvasTran.width;
+    transform.setContentSize(canvasTran.contentSize);
+    if(this.canvas && this.canvas.position && this.canvas.position.x){
+      this.x = this.canvas.position.x;
+      this.y = this.canvas.position.y;
+    }
     this.setAlpha(1)
   }
 
   private setAlpha(percent: number) {
     this.ctx.clear()
-    this.ctx.rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+    this.ctx.rect(-SCREEN_WIDTH/2, -SCREEN_HEIGHT/2, SCREEN_WIDTH, SCREEN_HEIGHT)
     this.ctx.fillColor = new Color(0, 0, 0, 255 * percent)
     this.ctx.fill()
     this.block.enabled = percent === 1

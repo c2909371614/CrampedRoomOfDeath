@@ -1,4 +1,4 @@
-import { game, RenderRoot2D } from 'cc'
+import { game, RenderRoot2D, Node, director, Scene } from 'cc'
 import Singleton from '../Base/Singleton'
 import { DEFAULT_FADE_DURATION, DrawManager } from '../Scripts/UI/DrawManager'
 import { createUINode } from '../Utils'
@@ -17,7 +17,8 @@ export default class FaderManager extends Singleton {
 
     const root = createUINode()
     root.addComponent(RenderRoot2D)
-
+    const canvas = (director.getScene() as Scene).getChildByName("Canvas") as any as Node;
+    root.setPosition(canvas.position.x, canvas.position.y)
     const node = createUINode()
     node.setParent(root)
     this._fader = node.addComponent(DrawManager)

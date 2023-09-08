@@ -159,7 +159,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 479.99999999999994,
+    "_orthoHeight": 480,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -799,7 +799,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 173.64,
+      "width": 138.98,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -829,7 +829,7 @@
       "b": 170,
       "a": 255
     },
-    "_string": "Created By Sli97",
+    "_string": "Created Time",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 22,
