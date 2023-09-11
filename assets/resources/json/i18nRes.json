@@ -1,0 +1,26 @@
+{
+    "int": {
+        "content": "string",
+        "value": "json"
+    },
+    "1": {
+        "content": "level",
+        "value": 1
+    },
+    "2": {
+        "content": "HP",
+        "value": 100
+    },
+    "3": {
+        "content": "score",
+        "value": 9999
+    },
+    "4": {
+        "content": "data",
+        "value": "{1:101:,2:101}"
+    },
+    "5": {
+        "content": "projectTime",
+        "value": "2022.10.01"
+    }
+}
