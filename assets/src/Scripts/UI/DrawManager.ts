@@ -3,7 +3,7 @@ const { ccclass } = _decorator
 let SCREEN_WIDTH = view.getVisibleSize().width
 let SCREEN_HEIGHT = view.getVisibleSize().height
 
-export const DEFAULT_FADE_DURATION = 200
+export const DEFAULT_FADE_DURATION = 200/2
 
 enum FadeStatus {
   IDLE,
@@ -40,6 +40,8 @@ export class DrawManager extends Component {
       this.y = this.canvas.position.y;
     }
     this.setAlpha(1)
+    let step = 0.1
+    this.schedule(this.updateMask, step);
   }
 
   private setAlpha(percent: number) {
@@ -50,7 +52,7 @@ export class DrawManager extends Component {
     this.block.enabled = percent === 1
   }
 
-  update() {
+  updateMask() {
     const fadePercent = (game.totalTime - this.oldTime) / this.duration
     switch (this.fadeStatus) {
       case FadeStatus.FADE_IN:

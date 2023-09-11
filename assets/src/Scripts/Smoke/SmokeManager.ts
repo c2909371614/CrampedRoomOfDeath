@@ -1,7 +1,7 @@
 import { _decorator } from 'cc'
 import { IEntity } from '../../Levels'
 import { SmokeStateMachine } from './SmokeStateMachine'
-import { EntityManager } from 'db://assets/Base/EntityManager'
+import { EntityManager } from '../../Base/EntityManager'
 const { ccclass } = _decorator
 
 @ccclass('SmokeManager')
