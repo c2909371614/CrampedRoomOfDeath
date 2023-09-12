@@ -8,10 +8,11 @@ const { ccclass } = _decorator
 export class StartManager extends Component {
   onLoad() {
     director.preloadScene(SCENE_ENUM.Battle)
-    // Utils.Instance.Init()
-    FaderManager.Instance.fadeOut(1000)
+    Utils.Instance.Init()
+    FaderManager.Instance.fadeOut(500)
     // this.node.once(Node.EventType.TOUCH_START, this.handleStart, this)
     this.node.once(Node.EventType.TOUCH_START, this.enterMenuView, this)
+
   }
 
   enterMenuView(){
