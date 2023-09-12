@@ -8,7 +8,6 @@ export enum LocalStorage{
 export default class Utils extends Singleton{
 
   jsonData = {};
-
   static get Instance() {
     return super.GetInstance<Utils>()
   }
@@ -35,7 +34,6 @@ export default class Utils extends Singleton{
   //   })
     this.loadJsonRes("json/configCommon");
   }
-
   createView(url:string, parent:Node){
     let strs = url.split("/")
     if(strs && strs.length > 0){
